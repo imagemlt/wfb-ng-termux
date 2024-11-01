@@ -316,7 +316,7 @@ void RawSocketTransmitter::inject_packet(const uint8_t *buf, size_t size)
 	bool res = static_cast<int>(rtlDevice->send_packet(buffer,radiotap_header.header.size() +sizeof(ieee_hdr)+size));
     uint64_t key = (uint64_t)(current_output) << 8 | (uint64_t)0xff;
     antenna_stat[key].log_latency(get_time_us() - start_us, res, size);
-
+    delete[] buffer;
 }
 
 void RawSocketTransmitter::dump_stats(FILE *fp, uint64_t ts, uint32_t &injected_packets, uint32_t &dropped_packets, uint32_t &injected_bytes)

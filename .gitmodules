@@ -1,0 +1,6 @@
+[submodule "wfb-ng"]
+	path = wfb-ng
+	url = https://github.com/svpcom/wfb-ng
+[submodule "DualDevourer"]
+	path = DualDevourer
+	url = git@github.com:imagemlt/DualDevourer.git

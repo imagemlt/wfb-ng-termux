@@ -22,7 +22,7 @@ make
 4. nc -u 连接5600端口，即可测试发送udp数据。
 
 ## TODO
-- [*] txpower修改后的测试 
+- [x] txpower修改后的测试 
 - [ ] libusb调用方式修改为使用submit_transfer
 - [ ] submit_transfer是否需要建立一个池子防止爆内存等场景?
 - [ ] 内存优化：是否需要减少拷贝场景?

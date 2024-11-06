@@ -1448,7 +1448,7 @@ int main(int argc, char * const *argv)
     int control_port=0;
     int log_interval = 1000;
     uint8_t channel = 161;
-
+    uint8_t power = 16;
     int bandwidth = 20;
     int short_gi = 0;
     int stbc = 0;
@@ -1467,8 +1467,11 @@ int main(int argc, char * const *argv)
     tx_mode_t tx_mode = LOCAL;
     int device_id = -1;
 
-    while ((opt = getopt(argc, argv, "dX:c:I:K:k:n:u:p:F:l:B:G:S:L:M:N:D:T:i:e:R:f:mVQP:C:")) != -1) {
+    while ((opt = getopt(argc, argv, "dE:X:c:I:K:k:n:u:p:F:l:B:G:S:L:M:N:D:T:i:e:R:f:mVQP:C:")) != -1) {
         switch (opt) {
+	case 'E':
+		power = static_cast<uint8_t>(atoi(optarg));
+		break;
         case 'X':
 	        device_id = atoi(optarg);
             break;
@@ -1664,7 +1667,7 @@ int main(int argc, char * const *argv)
             default:
                 break;
         }
-
+	rtlDevice->SetTxPower(power);
         rtlDevice->InitWrite(SelectedChannel{
             .Channel = channel,
             .ChannelOffset = 0,

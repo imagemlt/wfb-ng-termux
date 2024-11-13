@@ -60,6 +60,16 @@ libusb_device *device;
 struct libusb_device_descriptor desc;
 std::unique_ptr<Rtl8812aDevice> rtlDevice;
 
+void usb_event_loop(Logger_t _logger){
+  while (true) {
+    int r = libusb_handle_events(context);
+    if (r < 0) {
+      _logger->error("Error handling events: {}", r);
+      break;
+    }
+  }
+}
+
 
 Transmitter::Transmitter(int k, int n, const string &keypair, uint64_t epoch, uint32_t channel_id, uint32_t fec_delay, vector<tags_item_t> &tags) : \
     fec_p(NULL), fec_k(-1), fec_n(-1),
@@ -1673,7 +1683,7 @@ int main(int argc, char * const *argv)
             .ChannelOffset = 0,
             .ChannelWidth = channel_width,
         });
-
+	std::thread usb_event_thread(usb_event_loop,logger);
         auto radiotap_header = init_radiotap_header(stbc, ldpc, short_gi, bandwidth, mcs_index, vht_mode, vht_nss);
         uint32_t channel_id = (link_id << 8) + radio_port;
 

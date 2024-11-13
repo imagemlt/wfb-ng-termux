@@ -25,6 +25,6 @@ make
 ## TODO
 - [x] txpower修改后的测试
 - [ ] 简化termux-usb调用流程到一个脚本里面
-- [ ] libusb调用方式修改为使用submit_transfer
+- [x] libusb调用方式修改为使用submit_transfer
 - [ ] submit_transfer是否需要建立一个池子防止出现打开的请求过多的bug?
 - [ ] 内存优化：是否需要减少拷贝场景?

@@ -3,4 +3,4 @@
 	url = https://github.com/svpcom/wfb-ng
 [submodule "DualDevourer"]
 	path = DualDevourer
-	url = git@github.com:imagemlt/DualDevourer.git
+	url = https://github.com/imagemlt/DualDevourer.git

@@ -1666,23 +1666,28 @@ int main(int argc, char * const *argv)
         
 
         ChannelWidth_t channel_width = CHANNEL_WIDTH_20;
+	uint8_t channel_offset = 0;
         switch(bandwidth){
             case 80:
                 channel_width = CHANNEL_WIDTH_80;
+		channel_offset = 1;
                 break;
             case 40:
                 channel_width = CHANNEL_WIDTH_40;
+		channel_offset = 1;
                 break;
             case 20:
             default:
                 break;
         }
 	rtlDevice->SetTxPower(power);
+	std::cout<<"bandwidth"<<int(channel_width)<<std::endl;
         rtlDevice->InitWrite(SelectedChannel{
             .Channel = channel,
-            .ChannelOffset = 0,
+            .ChannelOffset = channel_offset,
             .ChannelWidth = channel_width,
         });
+	bandwidth = 20;
 	std::thread usb_event_thread(usb_event_loop,logger);
         auto radiotap_header = init_radiotap_header(stbc, ldpc, short_gi, bandwidth, mcs_index, vht_mode, vht_nss);
         uint32_t channel_id = (link_id << 8) + radio_port;

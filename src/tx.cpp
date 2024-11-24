@@ -1687,7 +1687,6 @@ int main(int argc, char * const *argv)
             .ChannelOffset = channel_offset,
             .ChannelWidth = channel_width,
         });
-	bandwidth = 20;
 	std::thread usb_event_thread(usb_event_loop,logger);
         auto radiotap_header = init_radiotap_header(stbc, ldpc, short_gi, bandwidth, mcs_index, vht_mode, vht_nss);
         uint32_t channel_id = (link_id << 8) + radio_port;

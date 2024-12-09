@@ -28,3 +28,4 @@ make
 - [x] libusb调用方式修改为使用submit_transfer
 - [ ] submit_transfer是否需要建立一个池子防止出现打开的请求过多的bug?
 - [ ] 内存优化：是否需要减少拷贝场景?
+- [ ] 使用LD_PRELOAD hook wfb-ng二进制文件，避免copy代码
